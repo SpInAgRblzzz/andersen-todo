@@ -9,8 +9,14 @@ function TodoInterface(props) {
 				onChange={props.inputHandler}
 			/>
 			<button type="submit" onClick={props.addTodoHandler}>
-				Add ToDo
+				{props.todoItemInterface ? "Add subToDo" : "Add ToDo"}
 			</button>
+			{props.todoItemInterface ? (
+				<>
+					<button>Correct</button>
+					<button>Delete</button>
+				</>
+			) : null}
 		</nav>
 	);
 }
