@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TodoInterface from "./TodoInterface";
+import TodoList from "./TodoList";
 
 function TodoItem(props) {
 	const [inputValue, setInputValue] = useState(props.todoValue);
@@ -28,7 +29,7 @@ function TodoItem(props) {
 				}}
 				subTodoAdded={subTodoAdded}
 			/>
-			{subTodoAdded ? props.children : null}
+			{subTodoAdded ? <TodoList /> : null}
 		</li>
 	);
 }
