@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TodoInterface from "./TodoInterface";
 
 function TodoList() {
 	const [inputValue, setInputValue] = useState("");
@@ -6,24 +7,17 @@ function TodoList() {
 
 	return (
 		<div>
-			<nav>
-				<input
-					type="text"
-					value={inputValue}
-					onChange={(e) => setInputValue(e.target.value)}
-				/>
-				<button
-					type="submit"
-					onClick={() => {
-						if (inputValue.trim() === "") {
-							return;
-						}
-						setTodos([...todos, inputValue]);
-						setInputValue("");
-					}}>
-					Add ToDo
-				</button>
-			</nav>
+			<TodoInterface
+				inputValue={inputValue}
+				inputHandler={(e) => setInputValue(e.target.value)}
+				addTodoHandler={() => {
+					if (inputValue.trim() === "") {
+						return;
+					}
+					setTodos([...todos, inputValue]);
+					setInputValue("");
+				}}
+			/>
 			<ul>
 				{todos.length === 0
 					? "The list is empty"
