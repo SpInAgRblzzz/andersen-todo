@@ -12,7 +12,11 @@ function TodoInterface(props) {
 			)}
 
 			<button type="submit" onClick={props.addTodoHandler}>
-				{props.todoItemInterface ? "Add subToDo" : "Add ToDo"}
+				{props.todoItemInterface
+					? props.subTodoAdded
+						? "Remove subToDo"
+						: "Add subToDo"
+					: "Add ToDo"}
 			</button>
 			{props.todoItemInterface ? (
 				<>

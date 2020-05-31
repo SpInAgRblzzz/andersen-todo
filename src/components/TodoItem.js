@@ -26,6 +26,7 @@ function TodoItem(props) {
 				correctionModeHandler={() => {
 					setCorrectionMode(!correctionMode);
 				}}
+				subTodoAdded={subTodoAdded}
 			/>
 			{subTodoAdded ? props.children : null}
 		</li>
