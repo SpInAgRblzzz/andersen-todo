@@ -3,17 +3,22 @@ import React from "react";
 function TodoInterface(props) {
 	return (
 		<nav>
-			<input
-				type="text"
-				value={props.inputValue}
-				onChange={props.inputHandler}
-			/>
+			{props.todoItemInterface ? null : (
+				<input
+					type="text"
+					value={props.inputValue}
+					onChange={props.inputHandler}
+				/>
+			)}
+
 			<button type="submit" onClick={props.addTodoHandler}>
 				{props.todoItemInterface ? "Add subToDo" : "Add ToDo"}
 			</button>
 			{props.todoItemInterface ? (
 				<>
-					<button>Correct</button>
+					<button onClick={props.correctionModeHandler}>
+						Correct
+					</button>
 					<button>Delete</button>
 				</>
 			) : null}

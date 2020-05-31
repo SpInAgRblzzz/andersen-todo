@@ -22,7 +22,11 @@ function TodoList() {
 			<ul>
 				{todos.length === 0
 					? "The list is empty"
-					: todos.map((item) => <TodoItem todoValue={item} />)}
+					: todos.map((item) => (
+							<TodoItem todoValue={item}>
+								<TodoList />
+							</TodoItem>
+					  ))}
 			</ul>
 		</div>
 	);
