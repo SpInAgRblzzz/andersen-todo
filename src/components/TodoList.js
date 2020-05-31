@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 function TodoList() {
 	const [inputValue, setInputValue] = useState("");
+	const [todos, setTodos] = useState([]);
+
 	return (
 		<div>
 			<nav>
@@ -10,12 +12,22 @@ function TodoList() {
 					value={inputValue}
 					onChange={(e) => setInputValue(e.target.value)}
 				/>
-				<button type="submit">Add ToDo</button>
+				<button
+					type="submit"
+					onClick={() => {
+						if (inputValue.trim() === "") {
+							return;
+						}
+						setTodos([...todos, inputValue]);
+						setInputValue("");
+					}}>
+					Add ToDo
+				</button>
 			</nav>
 			<ul>
-				{[1, 2, 3, 4, 5].map((item) => (
-					<li>{item}</li>
-				))}
+				{todos.length === 0
+					? "The list is empty"
+					: todos.map((item) => <li>{item}</li>)}
 			</ul>
 		</div>
 	);
