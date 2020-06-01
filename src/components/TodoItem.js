@@ -16,6 +16,15 @@ function TodoItem(props) {
 					/>
 					<button
 						onClick={() => {
+							props.setTodos(
+								props.todos.map((item) => {
+									if (item.id === props.id) {
+										item.value = inputValue;
+										return item;
+									}
+									return item;
+								})
+							);
 							setCorrectionMode(!correctionMode);
 						}}>
 						Submit
@@ -37,7 +46,11 @@ function TodoItem(props) {
 					setCorrectionMode(!correctionMode);
 				}}
 				subTodoAdded={subTodoAdded}
-				handleDelete={props.handleDelete}
+				handleDelete={() => {
+					props.setTodos(
+						props.todos.filter((item) => props.id !== item.id)
+					);
+				}}
 			/>
 			{subTodoAdded ? <TodoList /> : null}
 		</li>

@@ -33,13 +33,9 @@ function TodoList(props) {
 							<TodoItem
 								todoValue={todoItem.value}
 								key={todoItem.id}
-								handleDelete={() => {
-									setTodos(
-										todos.filter(
-											(item) => todoItem.id !== item.id
-										)
-									);
-								}}
+								id={todoItem.id}
+								todos={todos}
+								setTodos={setTodos}
 							/>
 					  ))}
 			</ul>
