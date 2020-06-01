@@ -8,7 +8,8 @@ function TodoItem(props) {
 	const [subTodoAdded, setSubTodoAdded] = useState(false);
 	const [correctionMode, setCorrectionMode] = useState(false);
 	const [isChecked, setCheck] = useState(props.isChecked);
-	function submitChanges() {
+	function submitChanges(e) {
+		e.preventDefault();
 		props.setTodos(
 			props.todos.map((item) => {
 				if (item.id === props.id) {
@@ -34,13 +35,13 @@ function TodoItem(props) {
 	return (
 		<li>
 			{correctionMode ? (
-				<div>
+				<form onSubmit={submitChanges}>
 					<input
 						value={inputValue}
 						onChange={(e) => setInputValue(e.target.value)}
 					/>
-					<button onClick={submitChanges}>Submit</button>
-				</div>
+					<input type="submit" value="Submit" />
+				</form>
 			) : (
 				<p
 					className={isChecked ? "checked" : null}
