@@ -20,6 +20,17 @@ function TodoItem(props) {
 		);
 		setCorrectionMode(!correctionMode);
 	}
+	function toggleCheck() {
+		props.setTodos(
+			props.todos.map((item) => {
+				if (item.id === props.id) {
+					item.isChecked = !isChecked;
+				}
+				return item;
+			})
+		);
+		setCheck(!isChecked);
+	}
 	return (
 		<li>
 			{correctionMode ? (
@@ -33,17 +44,7 @@ function TodoItem(props) {
 			) : (
 				<p
 					className={isChecked ? "checked" : null}
-					onClick={() => {
-						props.setTodos(
-							props.todos.map((item) => {
-								if (item.id === props.id) {
-									item.isChecked = !isChecked;
-								}
-								return item;
-							})
-						);
-						setCheck(!isChecked);
-					}}>
+					onClick={toggleCheck}>
 					{inputValue}
 				</p>
 			)}
