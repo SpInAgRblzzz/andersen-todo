@@ -57,7 +57,7 @@ function TodoItem(props) {
 					setSubTodoAdded(!subTodoAdded);
 				}}
 				correctionMode={correctionMode}
-				correctionModeHandler={() => {
+				toggleCorrectionMode={() => {
 					setCorrectionMode(!correctionMode);
 				}}
 				subTodoAdded={subTodoAdded}
