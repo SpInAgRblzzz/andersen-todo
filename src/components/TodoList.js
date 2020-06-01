@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TodoInterface from "./TodoInterface";
 import TodoItem from "./TodoItem";
 
-function TodoList() {
+function TodoList(props) {
 	const [inputValue, setInputValue] = useState("");
 	const [todos, setTodos] = useState([11, 22, 33, 44]); //set to []
 
@@ -22,8 +22,8 @@ function TodoList() {
 			<ul>
 				{todos.length === 0
 					? "The list is empty"
-					: todos.map((item) => (
-							<TodoItem todoValue={item}>
+					: todos.map((item, index) => (
+							<TodoItem todoValue={item} key={index}>
 								<TodoList />
 							</TodoItem>
 					  ))}

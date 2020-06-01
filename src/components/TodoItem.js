@@ -9,12 +9,20 @@ function TodoItem(props) {
 	return (
 		<li>
 			{correctionMode ? (
-				<input
-					value={inputValue}
-					onChange={(e) => setInputValue(e.target.value)}
-				/>
+				<div>
+					<input
+						value={inputValue}
+						onChange={(e) => setInputValue(e.target.value)}
+					/>
+					<button
+						onClick={() => {
+							setCorrectionMode(!correctionMode);
+						}}>
+						Submit
+					</button>
+				</div>
 			) : (
-				<p>{props.todoValue}</p>
+				<p>{inputValue}</p>
 			)}
 			<TodoInterface
 				todoItemInterface={true}
@@ -24,6 +32,7 @@ function TodoItem(props) {
 					setSubTodoAdded(!subTodoAdded);
 					return;
 				}}
+				correctionMode={correctionMode}
 				correctionModeHandler={() => {
 					setCorrectionMode(!correctionMode);
 				}}
