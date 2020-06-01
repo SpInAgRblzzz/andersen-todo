@@ -6,23 +6,21 @@ function TodoList(props) {
 	const [inputValue, setInputValue] = useState("");
 	const [todos, setTodos] = useState([]);
 	const [id, setId] = useState(0);
+	function handleAddTodo() {
+		if (inputValue.trim() === "") {
+			return;
+		}
+		setTodos([...todos, { value: inputValue, id: id, isChecked: false }]);
+		setId(id + 1);
+		setInputValue("");
+	}
 
 	return (
 		<div>
 			<TodoInterface
 				inputValue={inputValue}
 				inputHandler={(e) => setInputValue(e.target.value)}
-				addTodoHandler={() => {
-					if (inputValue.trim() === "") {
-						return;
-					}
-					setTodos([
-						...todos,
-						{ value: inputValue, id: id, isChecked: false },
-					]);
-					setId(id + 1);
-					setInputValue("");
-				}}
+				handleAddTodo={handleAddTodo}
 			/>
 			<ul>
 				{todos.length === 0

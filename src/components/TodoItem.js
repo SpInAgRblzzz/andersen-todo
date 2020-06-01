@@ -53,9 +53,8 @@ function TodoItem(props) {
 				todoItemInterface={true}
 				inputValue={inputValue}
 				inputHandler={(e) => setInputValue(e.target.value)}
-				addTodoHandler={() => {
+				handleAddTodo={() => {
 					setSubTodoAdded(!subTodoAdded);
-					return;
 				}}
 				correctionMode={correctionMode}
 				correctionModeHandler={() => {

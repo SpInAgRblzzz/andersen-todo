@@ -14,7 +14,7 @@ function TodoInterface(props) {
 			{props.todoItemInterface && !props.correctionMode ? (
 				<button onClick={props.correctionModeHandler}>Correct</button>
 			) : null}
-			<button type="submit" onClick={props.addTodoHandler}>
+			<button type="submit" onClick={props.handleAddTodo}>
 				{props.todoItemInterface
 					? props.subTodoAdded
 						? "Remove subToDo"
