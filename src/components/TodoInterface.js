@@ -4,23 +4,25 @@ function TodoInterface(props) {
 	return (
 		<nav>
 			{props.todoItemInterface ? null : (
-				<input
-					type="text"
-					value={props.inputValue}
-					onChange={props.inputHandler}
-				/>
+				<form onSubmit={props.handleAddTodo}>
+					<input
+						type="text"
+						value={props.inputValue}
+						onChange={props.inputHandler}
+						onSubmit={() => alert("sex")}
+					/>
+					<input type="submit" value="Add ToDo" />
+				</form>
 			)}
 
 			{props.todoItemInterface && !props.correctionMode ? (
 				<button onClick={props.toggleCorrectionMode}>Correct</button>
 			) : null}
-			<button type="submit" onClick={props.handleAddTodo}>
-				{props.todoItemInterface
-					? props.subTodoAdded
-						? "Remove subToDo"
-						: "Add subToDo"
-					: "Add ToDo"}
-			</button>
+			{props.todoItemInterface ? (
+				<button onClick={props.handleAddTodo}>
+					{props.subTodoAdded ? "Remove subToDo" : "Add subToDo"}
+				</button>
+			) : null}
 			{props.todoItemInterface ? (
 				<button onClick={props.handleDelete}>Delete</button>
 			) : null}
