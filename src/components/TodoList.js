@@ -29,9 +29,7 @@ function TodoList(props) {
 				{todos.length === 0
 					? "The list is empty"
 					: todos.map((item) => (
-							<TodoItem todoValue={item.value} key={item.id}>
-								<TodoList />
-							</TodoItem>
+							<TodoItem todoValue={item.value} key={item.id} />
 					  ))}
 			</ul>
 		</div>
