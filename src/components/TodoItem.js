@@ -37,6 +37,7 @@ function TodoItem(props) {
 					setCorrectionMode(!correctionMode);
 				}}
 				subTodoAdded={subTodoAdded}
+				handleDelete={props.handleDelete}
 			/>
 			{subTodoAdded ? <TodoList /> : null}
 		</li>

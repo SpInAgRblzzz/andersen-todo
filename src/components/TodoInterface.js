@@ -21,7 +21,9 @@ function TodoInterface(props) {
 						: "Add subToDo"
 					: "Add ToDo"}
 			</button>
-			{props.todoItemInterface ? <button>Delete</button> : null}
+			{props.todoItemInterface ? (
+				<button onClick={props.handleDelete}>Delete</button>
+			) : null}
 		</nav>
 	);
 }
