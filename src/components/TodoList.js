@@ -4,13 +4,8 @@ import TodoItem from "./TodoItem";
 
 function TodoList(props) {
 	const [inputValue, setInputValue] = useState("");
-	const [todos, setTodos] = useState([
-		{ value: 11, id: 0 },
-		{ value: 22, id: 1 },
-		{ value: 33, id: 2 },
-		{ value: 44, id: 3 },
-	]); //set to []
-	const [id, setId] = useState(4); // set to 0
+	const [todos, setTodos] = useState([]);
+	const [id, setId] = useState(0);
 
 	return (
 		<div>
@@ -21,7 +16,10 @@ function TodoList(props) {
 					if (inputValue.trim() === "") {
 						return;
 					}
-					setTodos([...todos, { value: inputValue, id: id }]);
+					setTodos([
+						...todos,
+						{ value: inputValue, id: id, isChecked: false },
+					]);
 					setId(id + 1);
 					setInputValue("");
 				}}
@@ -34,6 +32,7 @@ function TodoList(props) {
 								todoValue={todoItem.value}
 								key={todoItem.id}
 								id={todoItem.id}
+								isChecked={todoItem.isChecked}
 								todos={todos}
 								setTodos={setTodos}
 							/>

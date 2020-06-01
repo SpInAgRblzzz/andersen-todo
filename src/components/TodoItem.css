@@ -1,0 +1,14 @@
+p {
+	cursor: pointer;
+	display: inline-block;
+	min-width: 200px;
+}
+
+p:hover {
+	color: red;
+	background-color: beige;
+}
+
+.checked {
+	text-decoration: line-through;
+}

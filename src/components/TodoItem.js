@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import TodoInterface from "./TodoInterface";
 import TodoList from "./TodoList";
+import "./TodoItem.css";
 
 function TodoItem(props) {
 	const [inputValue, setInputValue] = useState(props.todoValue);
 	const [subTodoAdded, setSubTodoAdded] = useState(false);
 	const [correctionMode, setCorrectionMode] = useState(false);
+	const [isChecked, setCheck] = useState(props.isChecked);
 	return (
 		<li>
 			{correctionMode ? (
@@ -31,7 +33,21 @@ function TodoItem(props) {
 					</button>
 				</div>
 			) : (
-				<p>{inputValue}</p>
+				<p
+					className={isChecked ? "checked" : null}
+					onClick={() => {
+						props.setTodos(
+							props.todos.map((item) => {
+								if (item.id === props.id) {
+									item.isChecked = !isChecked;
+								}
+								return item;
+							})
+						);
+						setCheck(!isChecked);
+					}}>
+					{inputValue}
+				</p>
 			)}
 			<TodoInterface
 				todoItemInterface={true}
