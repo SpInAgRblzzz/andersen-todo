@@ -8,6 +8,18 @@ function TodoItem(props) {
 	const [subTodoAdded, setSubTodoAdded] = useState(false);
 	const [correctionMode, setCorrectionMode] = useState(false);
 	const [isChecked, setCheck] = useState(props.isChecked);
+	function submitChanges() {
+		props.setTodos(
+			props.todos.map((item) => {
+				if (item.id === props.id) {
+					item.value = inputValue;
+					return item;
+				}
+				return item;
+			})
+		);
+		setCorrectionMode(!correctionMode);
+	}
 	return (
 		<li>
 			{correctionMode ? (
@@ -16,21 +28,7 @@ function TodoItem(props) {
 						value={inputValue}
 						onChange={(e) => setInputValue(e.target.value)}
 					/>
-					<button
-						onClick={() => {
-							props.setTodos(
-								props.todos.map((item) => {
-									if (item.id === props.id) {
-										item.value = inputValue;
-										return item;
-									}
-									return item;
-								})
-							);
-							setCorrectionMode(!correctionMode);
-						}}>
-						Submit
-					</button>
+					<button onClick={submitChanges}>Submit</button>
 				</div>
 			) : (
 				<p
