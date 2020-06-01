@@ -4,7 +4,13 @@ import TodoItem from "./TodoItem";
 
 function TodoList(props) {
 	const [inputValue, setInputValue] = useState("");
-	const [todos, setTodos] = useState([11, 22, 33, 44]); //set to []
+	const [todos, setTodos] = useState([
+		{ value: 11, id: 0 },
+		{ value: 22, id: 1 },
+		{ value: 33, id: 2 },
+		{ value: 44, id: 3 },
+	]); //set to []
+	let id = 4; // set to 0
 
 	return (
 		<div>
@@ -15,15 +21,15 @@ function TodoList(props) {
 					if (inputValue.trim() === "") {
 						return;
 					}
-					setTodos([...todos, inputValue]);
+					setTodos([...todos, { value: inputValue, id: id++ }]);
 					setInputValue("");
 				}}
 			/>
 			<ul>
 				{todos.length === 0
 					? "The list is empty"
-					: todos.map((item, index) => (
-							<TodoItem todoValue={item} key={index}>
+					: todos.map((item) => (
+							<TodoItem todoValue={item.value} key={item.id}>
 								<TodoList />
 							</TodoItem>
 					  ))}
