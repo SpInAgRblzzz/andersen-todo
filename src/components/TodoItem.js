@@ -32,14 +32,23 @@ function TodoItem({ todoValue, isChecked, setTodos, todos, id }) {
 		);
 		setCheck(!checkStatus);
 	}
+
+	const handleChange = (e) => setInputValue(e.target.value);
+	const handleInput = (e) => setInputValue(e.target.value);
+	const handleAddTodo = () => {
+		setSubTodoAdded(!subTodoAdded);
+	};
+	const toggleCorrectionMode = () => {
+		setCorrectionMode(!correctionMode);
+	};
+	const handleDelete = () => {
+		setTodos(todos.filter((item) => id !== item.id));
+	};
 	return (
 		<li>
 			{correctionMode ? (
 				<form onSubmit={submitChanges}>
-					<input
-						value={inputValue}
-						onChange={(e) => setInputValue(e.target.value)}
-					/>
+					<input value={inputValue} onChange={handleChange} />
 					<input type="submit" value="Submit" />
 				</form>
 			) : (
@@ -52,18 +61,12 @@ function TodoItem({ todoValue, isChecked, setTodos, todos, id }) {
 			<TodoInterface
 				todoItemInterface={true}
 				inputValue={inputValue}
-				inputHandler={(e) => setInputValue(e.target.value)}
-				handleAddTodo={() => {
-					setSubTodoAdded(!subTodoAdded);
-				}}
+				inputHandler={handleInput}
+				handleAddTodo={handleAddTodo}
 				correctionMode={correctionMode}
-				toggleCorrectionMode={() => {
-					setCorrectionMode(!correctionMode);
-				}}
+				toggleCorrectionMode={toggleCorrectionMode}
 				subTodoAdded={subTodoAdded}
-				handleDelete={() => {
-					setTodos(todos.filter((item) => id !== item.id));
-				}}
+				handleDelete={handleDelete}
 			/>
 			{subTodoAdded ? <TodoList /> : null}
 		</li>
