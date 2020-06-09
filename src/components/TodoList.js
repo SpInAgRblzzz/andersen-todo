@@ -6,6 +6,7 @@ function TodoList(props) {
 	const [inputValue, setInputValue] = useState("");
 	const [todos, setTodos] = useState([]);
 	const [id, setId] = useState(0);
+
 	function handleAddTodo(e) {
 		e.preventDefault();
 		if (inputValue.trim() !== "") {
