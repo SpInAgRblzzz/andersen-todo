@@ -3,11 +3,12 @@ import TodoInterface from "./TodoInterface";
 import TodoList from "./TodoList";
 import "./TodoItem.css";
 
-function TodoItem({ todoValue, isChecked, setTodos, todos, id }) {
+function TodoItem({ todoValue, isChecked, setTodos, todos, id, idRoute }) {
 	const [inputValue, setInputValue] = useState(todoValue);
 	const [subTodoAdded, setSubTodoAdded] = useState(false);
 	const [correctionMode, setCorrectionMode] = useState(false);
 	const [checkStatus, setCheck] = useState(isChecked);
+
 	function submitChanges(e) {
 		e.preventDefault();
 		setTodos(
@@ -21,6 +22,7 @@ function TodoItem({ todoValue, isChecked, setTodos, todos, id }) {
 		);
 		setCorrectionMode(!correctionMode);
 	}
+
 	function toggleCheck() {
 		setTodos(
 			todos.map((item) => {
@@ -68,7 +70,7 @@ function TodoItem({ todoValue, isChecked, setTodos, todos, id }) {
 				subTodoAdded={subTodoAdded}
 				handleDelete={handleDelete}
 			/>
-			{subTodoAdded ? <TodoList /> : null}
+			{subTodoAdded ? <TodoList currentIdRoute={idRoute} /> : null}
 		</li>
 	);
 }

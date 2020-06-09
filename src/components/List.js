@@ -1,7 +1,7 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 
-function List({ todos, setTodos }) {
+function List({ todos, setTodos, idRoute }) {
 	return (
 		<ul>
 			{todos.length === 0
@@ -14,6 +14,7 @@ function List({ todos, setTodos }) {
 							isChecked={todoItem.isChecked}
 							todos={todos}
 							setTodos={setTodos}
+							idRoute={[...idRoute, todoItem.id]}
 						/>
 				  ))}
 		</ul>

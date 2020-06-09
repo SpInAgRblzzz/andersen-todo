@@ -1,21 +1,23 @@
 import actonTypes from "./actionCreators/actonTypes";
-const { SET_TODOS, UPDATE_ID } = actonTypes;
+import getTodoItemByIdRoute from "./assets/getTodoItemByIdRoute";
+const { SET_TODOS } = actonTypes;
 export default function reducer(state, action) {
 	switch (action.type) {
 		case SET_TODOS:
-			const { value, isChecked } = action;
+			const { value, isChecked, idRoute } = action;
 			const newTodoItem = {
 				value,
 				id: state.id,
 				isChecked,
+				todos: [],
 			};
-			return Object.assign({}, state, {
-				todos: [...state.todos, newTodoItem],
-			});
-		case UPDATE_ID:
-			return Object.assign({}, state, {
-				id: state.id + 1,
-			});
+
+			const newState = Object.assign({}, state);
+			newState.id = state.id + 1;
+			getTodoItemByIdRoute(newState, idRoute).todos.push(newTodoItem);
+
+			return newState;
+
 		default:
 			return state;
 	}

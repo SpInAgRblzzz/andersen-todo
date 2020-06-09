@@ -5,22 +5,23 @@ import { createStore } from "redux";
 import { Provider, connect } from "react-redux";
 import reducer from "./reducer";
 import setTodos from "./actionCreators/setTodos";
-import updateId from "./actionCreators/updateId";
+import getTodoItemByIdRoute from "./assets/getTodoItemByIdRoute";
 
 const store = createStore(reducer, { todos: [], id: 0 });
 
-function TodoList() {
-	const СonnectedList = connect((state) => ({ todos: state.todos }))(List);
+function TodoList({ currentIdRoute }) {
+	const idRoute = currentIdRoute ? currentIdRoute : [];
+	const СonnectedList = connect((state) => ({
+		todos: getTodoItemByIdRoute(state, idRoute).todos,
+	}))(List);
 
 	const [inputValue, setInputValue] = useState("");
-	//const [id, setId] = useState(0);
 
 	function handleAddTodo(e) {
 		e.preventDefault();
 
 		if (inputValue.trim() !== "") {
-			store.dispatch(setTodos(inputValue, false));
-			store.dispatch(updateId());
+			store.dispatch(setTodos(inputValue, false, idRoute));
 
 			setInputValue("");
 		}
@@ -36,7 +37,7 @@ function TodoList() {
 					inputHandler={handleInput}
 					handleAddTodo={handleAddTodo}
 				/>
-				<СonnectedList setTodos={setTodos} />
+				<СonnectedList setTodos={setTodos} idRoute={idRoute} />
 			</div>
 		</Provider>
 	);
