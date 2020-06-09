@@ -1,8 +1,8 @@
-import /* { SET_TODOS } */ a from "./actionCreators/actonTypes";
-
+import actonTypes from "./actionCreators/actonTypes";
+const { SET_TODOS } = actonTypes;
 export default function reducer(state, action) {
 	switch (action.type) {
-		case a.SET_TODOS:
+		case SET_TODOS:
 			return Object.assign({}, state, {
 				todos: [...state.todos, action.payload],
 			});

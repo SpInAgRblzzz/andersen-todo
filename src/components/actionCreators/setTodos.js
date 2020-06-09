@@ -1,4 +1,5 @@
-import { SET_TODOS } from "./actonTypes";
+import actionTypes from "./actonTypes";
+const { SET_TODOS } = actionTypes;
 
 export default function setTodos(newTodo) {
 	return {
