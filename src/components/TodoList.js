@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TodoInterface from "./TodoInterface";
-import TodoItem from "./TodoItem";
+import List from "./List";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducer";
@@ -34,7 +34,8 @@ function TodoList() {
 					inputHandler={handleInput}
 					handleAddTodo={handleAddTodo}
 				/>
-				<ul>
+				<List todos={todos} setTodos={setTodos} />
+				{/* <ul>
 					{todos.length === 0
 						? "The list is empty"
 						: todos.map((todoItem) => (
@@ -47,7 +48,7 @@ function TodoList() {
 									setTodos={setTodos}
 								/>
 						  ))}
-				</ul>
+				</ul> */}
 			</div>
 		</Provider>
 	);
