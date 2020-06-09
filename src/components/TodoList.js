@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TodoInterface from "./TodoInterface";
 import TodoItem from "./TodoItem";
 
-function TodoList(props) {
+function TodoList() {
 	const [inputValue, setInputValue] = useState("");
 	const [todos, setTodos] = useState([]);
 	const [id, setId] = useState(0);
