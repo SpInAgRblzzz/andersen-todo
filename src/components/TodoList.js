@@ -8,12 +8,14 @@ function TodoList(props) {
 	const [id, setId] = useState(0);
 	function handleAddTodo(e) {
 		e.preventDefault();
-		if (inputValue.trim() === "") {
-			return;
+		if (inputValue.trim() !== "") {
+			setTodos([
+				...todos,
+				{ value: inputValue, id: id, isChecked: false },
+			]);
+			setId(id + 1);
+			setInputValue("");
 		}
-		setTodos([...todos, { value: inputValue, id: id, isChecked: false }]);
-		setId(id + 1);
-		setInputValue("");
 	}
 
 	return (
