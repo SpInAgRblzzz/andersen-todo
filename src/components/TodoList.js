@@ -18,11 +18,13 @@ function TodoList(props) {
 		}
 	}
 
+	const handleInput = (e) => setInputValue(e.target.value);
+
 	return (
 		<div>
 			<TodoInterface
 				inputValue={inputValue}
-				inputHandler={(e) => setInputValue(e.target.value)}
+				inputHandler={handleInput}
 				handleAddTodo={handleAddTodo}
 			/>
 			<ul>
