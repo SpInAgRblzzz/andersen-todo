@@ -3,16 +3,16 @@ import TodoInterface from "./TodoInterface";
 import TodoList from "./TodoList";
 import "./TodoItem.css";
 
-function TodoItem(props) {
-	const [inputValue, setInputValue] = useState(props.todoValue);
+function TodoItem({ todoValue, isChecked, setTodos, todos, id }) {
+	const [inputValue, setInputValue] = useState(todoValue);
 	const [subTodoAdded, setSubTodoAdded] = useState(false);
 	const [correctionMode, setCorrectionMode] = useState(false);
-	const [isChecked, setCheck] = useState(props.isChecked);
+	const [checkStatus, setCheck] = useState(isChecked);
 	function submitChanges(e) {
 		e.preventDefault();
-		props.setTodos(
-			props.todos.map((item) => {
-				if (item.id === props.id) {
+		setTodos(
+			todos.map((item) => {
+				if (item.id === id) {
 					item.value = inputValue;
 					return item;
 				}
@@ -22,15 +22,15 @@ function TodoItem(props) {
 		setCorrectionMode(!correctionMode);
 	}
 	function toggleCheck() {
-		props.setTodos(
-			props.todos.map((item) => {
-				if (item.id === props.id) {
-					item.isChecked = !isChecked;
+		setTodos(
+			todos.map((item) => {
+				if (item.id === id) {
+					item.isChecked = !checkStatus;
 				}
 				return item;
 			})
 		);
-		setCheck(!isChecked);
+		setCheck(!checkStatus);
 	}
 	return (
 		<li>
@@ -44,7 +44,7 @@ function TodoItem(props) {
 				</form>
 			) : (
 				<p
-					className={isChecked ? "checked" : null}
+					className={checkStatus ? "checked" : null}
 					onClick={toggleCheck}>
 					{inputValue}
 				</p>
@@ -62,9 +62,7 @@ function TodoItem(props) {
 				}}
 				subTodoAdded={subTodoAdded}
 				handleDelete={() => {
-					props.setTodos(
-						props.todos.filter((item) => props.id !== item.id)
-					);
+					setTodos(todos.filter((item) => id !== item.id));
 				}}
 			/>
 			{subTodoAdded ? <TodoList /> : null}
