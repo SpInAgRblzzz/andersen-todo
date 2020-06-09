@@ -1,9 +1,10 @@
 import actionTypes from "./actonTypes";
 const { SET_TODOS } = actionTypes;
 
-export default function setTodos(newTodo) {
+export default function setTodos(inputValue, isChecked) {
 	return {
 		type: SET_TODOS,
-		payload: newTodo,
+		value: inputValue,
+		isChecked,
 	};
 }

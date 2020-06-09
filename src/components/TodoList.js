@@ -5,23 +5,23 @@ import { createStore } from "redux";
 import { Provider, connect } from "react-redux";
 import reducer from "./reducer";
 import setTodos from "./actionCreators/setTodos";
+import updateId from "./actionCreators/updateId";
 
-const store = createStore(reducer, { todos: [] });
+const store = createStore(reducer, { todos: [], id: 0 });
 
 function TodoList() {
 	const СonnectedList = connect((state) => ({ todos: state.todos }))(List);
 
 	const [inputValue, setInputValue] = useState("");
-	const [id, setId] = useState(0);
+	//const [id, setId] = useState(0);
 
 	function handleAddTodo(e) {
 		e.preventDefault();
-		console.log(setTodos({ value: inputValue, id: id, isChecked: false }));
+
 		if (inputValue.trim() !== "") {
-			store.dispatch(
-				setTodos({ value: inputValue, id: id, isChecked: false })
-			);
-			setId(id + 1);
+			store.dispatch(setTodos(inputValue, false));
+			store.dispatch(updateId());
+
 			setInputValue("");
 		}
 	}
