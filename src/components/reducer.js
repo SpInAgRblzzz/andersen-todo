@@ -1,6 +1,6 @@
 import actonTypes from "./actionCreators/actonTypes";
 import getTodoItemByIdRoute from "./assets/getTodoItemByIdRoute";
-const { SET_TODOS, CHANGE_TODO } = actonTypes;
+const { SET_TODOS, CHANGE_TODO, DELETE_TODO } = actonTypes;
 export default function reducer(state, action) {
 	const { value, isChecked, idRoute } = action;
 	const newState = Object.assign({}, state);
@@ -21,6 +21,17 @@ export default function reducer(state, action) {
 
 		case CHANGE_TODO:
 			getTodoItemByIdRoute(newState, idRoute).value = value;
+			console.log(newState);
+			return newState;
+
+		case DELETE_TODO:
+			const deleteId = idRoute.pop();
+			const newTodos = getTodoItemByIdRoute(
+				newState,
+				idRoute
+			).todos.filter((item) => item.id !== deleteId);
+			getTodoItemByIdRoute(newState, idRoute).todos = newTodos;
+
 			console.log(newState);
 			return newState;
 

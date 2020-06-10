@@ -11,6 +11,7 @@ function TodoItem({
 	id,
 	idRoute,
 	correctTodo,
+	deleteTodo,
 }) {
 	const [inputValue, setInputValue] = useState(todoValue);
 	const [subTodoAdded, setSubTodoAdded] = useState(false);
@@ -53,7 +54,7 @@ function TodoItem({
 		setCorrectionMode(!correctionMode);
 	};
 	const handleDelete = () => {
-		setTodos(todos.filter((item) => id !== item.id));
+		deleteTodo(id, idRoute);
 	};
 	return (
 		<li>

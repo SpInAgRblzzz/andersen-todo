@@ -2,9 +2,13 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import TodoItem from "./TodoItem";
 import correctTodo from "./actionCreators/correctTodo";
+import deleteTodo from "./actionCreators/deleteTodo";
 
 function List({ todos, setTodos, idRoute, dispatch }) {
-	const boundActionCreators = bindActionCreators({ correctTodo }, dispatch);
+	const boundActionCreators = bindActionCreators(
+		{ correctTodo, deleteTodo },
+		dispatch
+	);
 	return (
 		<ul>
 			{todos.length === 0
