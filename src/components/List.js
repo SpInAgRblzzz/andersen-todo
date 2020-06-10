@@ -3,28 +3,44 @@ import { bindActionCreators } from "redux";
 import TodoItem from "./TodoItem";
 import correctTodo from "./actionCreators/correctTodo";
 import deleteTodo from "./actionCreators/deleteTodo";
+import toggleCheck from "./actionCreators/toggleCheck";
+import { connect } from "react-redux";
 
 function List({ todos, setTodos, idRoute, dispatch }) {
 	const boundActionCreators = bindActionCreators(
-		{ correctTodo, deleteTodo },
+		{ correctTodo, deleteTodo, toggleCheck },
 		dispatch
 	);
 	return (
 		<ul>
 			{todos.length === 0
 				? "The list is empty"
-				: todos.map((todoItem) => (
-						<TodoItem
-							todoValue={todoItem.value}
-							key={todoItem.id}
-							id={todoItem.id}
-							isChecked={todoItem.isChecked}
-							todos={todos}
-							setTodos={setTodos}
-							idRoute={[...idRoute, todoItem.id]}
-							{...boundActionCreators}
-						/>
-				  ))}
+				: todos.map((todoItem) => {
+						const ConnectedTodoItem = connect((state) => ({
+							todoValue: todoItem.value,
+							id: todoItem.id,
+							isChecked: todoItem.isChecked,
+							idRoute: [...idRoute, todoItem.id],
+						}))(TodoItem);
+						return (
+							<ConnectedTodoItem
+								key={todoItem.id}
+								todos={todos}
+								setTodos={setTodos}
+								{...boundActionCreators}
+							/>
+							/* <TodoItem
+								todoValue={todoItem.value}
+								key={todoItem.id}
+								id={todoItem.id}
+								isChecked={todoItem.isChecked}
+								todos={todos}
+								setTodos={setTodos}
+								idRoute={[...idRoute, todoItem.id]}
+								{...boundActionCreators}
+							/> */
+						);
+				  })}
 		</ul>
 	);
 }

@@ -12,29 +12,22 @@ function TodoItem({
 	idRoute,
 	correctTodo,
 	deleteTodo,
+	toggleCheck,
 }) {
 	const [inputValue, setInputValue] = useState(todoValue);
 	const [subTodoAdded, setSubTodoAdded] = useState(false);
 	const [correctionMode, setCorrectionMode] = useState(false);
-	const [checkStatus, setCheck] = useState(isChecked);
+	//const [checkStatus, setCheck] = useState(isChecked);
 
 	function submitChanges(e) {
 		e.preventDefault();
 		correctTodo(inputValue, idRoute);
-		/* setTodos(
-			todos.map((item) => {
-				if (item.id === id) {
-					item.value = inputValue;
-					return item;
-				}
-				return item;
-			})
-		); */
 		setCorrectionMode(!correctionMode);
 	}
 
-	function toggleCheck() {
-		setTodos(
+	function toggleCheckStatus() {
+		toggleCheck(isChecked, idRoute);
+		/* setTodos(
 			todos.map((item) => {
 				if (item.id === id) {
 					item.isChecked = !checkStatus;
@@ -42,10 +35,9 @@ function TodoItem({
 				return item;
 			})
 		);
-		setCheck(!checkStatus);
+		setCheck(!checkStatus); */
 	}
 
-	const handleChange = (e) => setInputValue(e.target.value);
 	const handleInput = (e) => setInputValue(e.target.value);
 	const handleAddTodo = () => {
 		setSubTodoAdded(!subTodoAdded);
@@ -60,13 +52,13 @@ function TodoItem({
 		<li>
 			{correctionMode ? (
 				<form onSubmit={submitChanges}>
-					<input value={inputValue} onChange={handleChange} />
+					<input value={inputValue} onChange={handleInput} />
 					<input type="submit" value="Submit" />
 				</form>
 			) : (
 				<p
-					className={checkStatus ? "checked" : null}
-					onClick={toggleCheck}>
+					className={isChecked ? "checked" : null}
+					onClick={toggleCheckStatus}>
 					{inputValue}
 				</p>
 			)}
