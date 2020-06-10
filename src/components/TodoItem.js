@@ -6,8 +6,6 @@ import "./TodoItem.css";
 function TodoItem({
 	todoValue,
 	isChecked,
-	setTodos,
-	todos,
 	id,
 	idRoute,
 	correctTodo,

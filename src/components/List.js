@@ -25,8 +25,6 @@ function List({ todos, setTodos, idRoute, dispatch }) {
 						return (
 							<ConnectedTodoItem
 								key={todoItem.id}
-								todos={todos}
-								setTodos={setTodos}
 								{...boundActionCreators}
 							/>
 							/* <TodoItem
