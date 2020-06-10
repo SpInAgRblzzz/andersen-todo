@@ -3,7 +3,15 @@ import TodoInterface from "./TodoInterface";
 import TodoList from "./TodoList";
 import "./TodoItem.css";
 
-function TodoItem({ todoValue, isChecked, setTodos, todos, id, idRoute }) {
+function TodoItem({
+	todoValue,
+	isChecked,
+	setTodos,
+	todos,
+	id,
+	idRoute,
+	correctTodo,
+}) {
 	const [inputValue, setInputValue] = useState(todoValue);
 	const [subTodoAdded, setSubTodoAdded] = useState(false);
 	const [correctionMode, setCorrectionMode] = useState(false);
@@ -11,7 +19,8 @@ function TodoItem({ todoValue, isChecked, setTodos, todos, id, idRoute }) {
 
 	function submitChanges(e) {
 		e.preventDefault();
-		setTodos(
+		correctTodo(inputValue, idRoute);
+		/* setTodos(
 			todos.map((item) => {
 				if (item.id === id) {
 					item.value = inputValue;
@@ -19,7 +28,7 @@ function TodoItem({ todoValue, isChecked, setTodos, todos, id, idRoute }) {
 				}
 				return item;
 			})
-		);
+		); */
 		setCorrectionMode(!correctionMode);
 	}
 
