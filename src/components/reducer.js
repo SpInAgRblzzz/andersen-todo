@@ -15,12 +15,12 @@ export default function reducer(state, action) {
 			};
 			newState.id = state.id + 1;
 			getTodoItemByIdRoute(newState, idRoute).todos.push(newTodoItem);
-			console.log(newState);
+
 			return newState;
 
 		case CHANGE_TODO:
 			getTodoItemByIdRoute(newState, idRoute).value = value;
-			console.log(newState);
+
 			return newState;
 
 		case DELETE_TODO:
@@ -31,12 +31,11 @@ export default function reducer(state, action) {
 			).todos.filter((item) => item.id !== deleteId);
 			getTodoItemByIdRoute(newState, idRoute).todos = newTodos;
 
-			console.log(newState);
 			return newState;
 
 		case TOGGLE_CHECK:
 			getTodoItemByIdRoute(newState, idRoute).isChecked = isChecked;
-			console.log(newState);
+
 			return newState;
 
 		default:
