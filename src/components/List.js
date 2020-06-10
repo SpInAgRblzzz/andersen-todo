@@ -27,16 +27,6 @@ function List({ todos, setTodos, idRoute, dispatch }) {
 								key={todoItem.id}
 								{...boundActionCreators}
 							/>
-							/* <TodoItem
-								todoValue={todoItem.value}
-								key={todoItem.id}
-								id={todoItem.id}
-								isChecked={todoItem.isChecked}
-								todos={todos}
-								setTodos={setTodos}
-								idRoute={[...idRoute, todoItem.id]}
-								{...boundActionCreators}
-							/> */
 						);
 				  })}
 		</ul>
