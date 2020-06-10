@@ -37,7 +37,7 @@ function TodoList({ currentIdRoute }) {
 					inputHandler={handleInput}
 					handleAddTodo={handleAddTodo}
 				/>
-				<СonnectedList setTodos={setTodos} idRoute={idRoute} />
+				<СonnectedList idRoute={idRoute} />
 			</div>
 		</Provider>
 	);

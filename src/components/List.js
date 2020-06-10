@@ -6,7 +6,7 @@ import deleteTodo from "./actionCreators/deleteTodo";
 import toggleCheck from "./actionCreators/toggleCheck";
 import { connect } from "react-redux";
 
-function List({ todos, setTodos, idRoute, dispatch }) {
+function List({ todos, idRoute, dispatch }) {
 	const boundActionCreators = bindActionCreators(
 		{ correctTodo, deleteTodo, toggleCheck },
 		dispatch
